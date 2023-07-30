@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="userDao" class="com.shike.bean.UserDao" destroy-method="destroyDataMethod"/>
+
+    <bean id="userService" class="com.shike.bean.UserService" scope="prototype">
+        <property name="uId" value="10001"/>
+        <property name="userDao" ref="proxyUserDao"/>
+        <property name="location" value="深圳"/>
+        <property name="company" value="大大"/>
+    </bean>
+
+    <bean class="com.shike.common.MyBeanPostProcessor"/>
+    <bean class="com.shike.common.MyBeanFactoryPostProcessor"/>
+
+    <bean id="proxyUserDao" class="com.shike.bean.ProxyBeanFactory"/>
+
+    <bean class="com.shike.event.CustomListener"/>
+    <bean class="com.shike.event.ContextRefreshedEventListener"/>
+
+    <component-scan base-package="com.shike.bean"/>
+
+
+</beans>
